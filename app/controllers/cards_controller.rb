@@ -4,7 +4,7 @@ class CardsController < ApplicationController
   end
 
   def Show
-    @card = current_user.boards.cards.find(cards_params)
+    @card = Cards.find(cards_params)
   end
 
   def new
@@ -14,13 +14,25 @@ class CardsController < ApplicationController
   def create
     @card = current_user.boards.cards.build(card_params)
 
-      if @board.save
-        redirect_to @board, notice: "Card created"
+      if @card.save
+        redirect_to board_cards_path, notice: "Card created"
       else
         render :new
       end
   end
 
-  #NEED TO MAKE DESTROY OPTION
+  def destroy
+    @card = Card.find(params[:id])
+
+    @Card.destroy
+
+    redirect_to boards_path
+  end
+
+  private
+
+  def card_params
+    params.require(:card).permit(:title)
+  end
 
 end

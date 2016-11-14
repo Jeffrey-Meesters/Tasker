@@ -5,5 +5,15 @@
 </header>
 <body>
  <p> SHOW PAGE <p>
+
+   <div class="form-group">
+     <%= render 'boards/cardsform' %>
+   </div>
+
+  <% @cards.each do |card| %>
+    <% @card = card %>
+    <%= card.title %>
+  <%end%>
+
 </body>
 </html>

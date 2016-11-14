@@ -5,10 +5,12 @@
 </header>
 <body>
 
+<!--Create boards -->
   <div class="form-group">
     <%= render 'boards/boardsform' %>
   </div>
 
+<!-- show boards -->
   <ul class="boards">
     <% @boards.each do |board| %>
       <%  @board=board %>
