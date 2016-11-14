@@ -14,7 +14,7 @@ class BoardsController < ApplicationController
   end
 
   def create
-    @board = current_user.boards.new
+    @board = current_user.boards.new(board_params)
 
       if @board.save
         redirect_to boards_path, notice: "Board created"
@@ -35,7 +35,7 @@ class BoardsController < ApplicationController
   private
 
   def board_params
-    params.require(:title).permit(:title)
+    params.require(:board).permit(:title)
   end
 
 end
