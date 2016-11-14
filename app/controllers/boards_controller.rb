@@ -2,10 +2,11 @@ class BoardsController < ApplicationController
 
   def index
     @boards = current_user.boards
+    @board = Board.new
   end
 
-  def Show
-    @board = current_user.boards.find(board_params)
+  def show
+    @board = Board.find(params[:id])
   end
 
   def new
@@ -13,15 +14,28 @@ class BoardsController < ApplicationController
   end
 
   def create
-    @board = current_user.boards.build(board_params)
+    @board = current_user.boards.new
 
       if @board.save
-        redirect_to @board, notice: "Board created"
+        redirect_to boards_path, notice: "Board created"
       else
         render :new
       end
   end
 
-  #NEED TO MAKE DESTROY OPTION
+
+  def destroy
+    @board = Board.find(params[:id])
+
+    @board.destroy
+
+    redirect_to boards_path
+  end
+
+  private
+
+  def board_params
+    params.require(:title).permit(:title)
+  end
 
 end
