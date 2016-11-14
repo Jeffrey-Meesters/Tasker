@@ -22,4 +22,6 @@ class BoardsController < ApplicationController
       end
   end
 
+  #NEED TO MAKE DESTROY OPTION
+
 end

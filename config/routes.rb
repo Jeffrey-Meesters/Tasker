@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :boards
+  resources :boards do
+    recources :cards
+  end
 
 end
