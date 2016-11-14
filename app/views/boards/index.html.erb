@@ -13,8 +13,7 @@
     <% @boards.each do |board| %>
       <%  @board=board %>
     <li class="board">
-      <%= @board.title %>
-      <%= link_to board.id, board_path( @board[id=:id]) %> <!-- just here intil I fix the title -->
+      <%= link_to @board.title, board_path( @board[id=:id]) %>
       <%= link_to "Delete", board_path( @board[id=:id] ), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-success" %>
     </li>
       <%end%>
