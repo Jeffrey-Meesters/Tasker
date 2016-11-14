@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :boards do
-    recources :cards
+    resources :cards
   end
 
 end
