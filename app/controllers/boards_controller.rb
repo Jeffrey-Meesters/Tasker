@@ -1,45 +1,52 @@
 class BoardsController < ApplicationController
+before_action :set_board, only: [:show, :edit, :update]
 
   def index
-    @boards = current_user.boards.all
+    @boards = current_user.boards
+    @board = Board.new
   end
 
   def show
     @board = Board.find(params[:id])
-    @cards = @board.cards.build
-  end
-
-  def new
-    @board = current_user.boards.build
+    @card = @board.cards.new
   end
 
   def create
-    @board = current_user.boards.build(board_params)
+    board = current_user.boards.build(board_params)
 
-      if @board.save
-        redirect_to boards_path, notice: "Board created"
-      else
-        render :new
-      end
+    if board.save
+      render status: 200, json: {
+        message: "Board successfully created",
+        board: board
+      }.to_json
+    else
+      render status: 422, json: {
+        error: board.errors.full_messages
+      }.to_json
+    end
   end
 
-
-  def destroy
-    @board = Board.find(params[:id])
-
-    @board.destroy
-
-    redirect_to boards_path
+  def update
+  if @board.update(board_params)
+    redirect_to @board, notice: "cards successfully updated"
+  else
+    render :edit
   end
+end
+
 
   private
 
-  def board_params
-    params.require(:board).permit(:title)
+  def set_board
+    @board = Board.find(params[:id])
   end
 
   def card_params
-    params.require(:card).permit(:title, :board_id )
+    params.require(:card).permit(:title, :board_id)
+  end
+
+  def board_params
+    params.require(:board).permit(:title)
   end
 
 end

@@ -1,16 +1,9 @@
 <!DOCTYPE html>
 <html>
 <header>
-
 </header>
 <body>
- <p> SHOW PAGE <p>
-
-
-   <div class="form-group">
-     <%= render 'boards/cardsform' %>
-   </div>
-
+  <%= render 'cards/cardsform', card: @card, board: @board %>
 
 </body>
 </html>

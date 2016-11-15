@@ -5,20 +5,16 @@
 </header>
 <body>
 
-  <div class="form-group">
-    <%= render 'cards/cardssform' %>
-  </div>
+  <h1><%# @board.title %></h1>
 
-  <ul class="cards">
-    <% @cards.each do |card| %>
-      <%  @card=card %>
-    <li class="card">
-      <%= @card.title %>
-      <%= link_to card.id, card_path( @card[id=:id]) %> <!-- just here intil I fix the title -->
-      <%= link_to "Delete", card_path( @card[id=:id] ), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-success" %>
-    </li>
-      <%end%>
+  <%= render "cardsform", board: @board, card: @card %>
+
+  <ul id="cards">
+    <%# @cards.each do |card| %>
+      <li><%# card.title %></li>
+    <%# end %>
   </ul>
+
 
 </body>
 </html>
