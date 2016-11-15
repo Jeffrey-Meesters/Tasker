@@ -11,7 +11,7 @@
 
   <ul id="boards">
     <% @boards.each do |board| %>
-      <li><%=link_to board.title, board_path( board[id=:id]) %></li>
+      <li><%=link_to board.title, board_path(board[id=:id]) %></li>
     <%end %>
   </ul>
 

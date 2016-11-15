@@ -31,6 +31,15 @@ before_action :set_board
     end
   end
 
+  def destroy
+    @card = Card.find(params[:id])
+
+    @card.destroy
+
+    redirect_to board_path
+  end
+
+
   private
 
     def set_board

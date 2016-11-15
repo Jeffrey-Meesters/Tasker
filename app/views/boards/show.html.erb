@@ -5,16 +5,53 @@
 <body>
   <%= render 'cards/cardsform', card: @card, board: @board %>
 
-  <h1> <%= @board.title %> </h1>
+  <h1> Board: <%= @board.title %> </h1>
 
     <ul id="cards">
     <% @board.cards.each do |card| %>
-      <li><%= card.title %></li>
+      <li>
+        <h3> Card: <%= card.title %> </h3>
+        <form>
+            <input type="text" onkeypress="if (event.keyCode==13){ func_name(this.value);return false;}" id="new-todo"/>
+            <button onMouseDown="submitTodo(); return false">task</button>
+        </form>
+        <ul id="todolist">
+        </ul>
+      </li>
     <%end%>
     </ul>
 
+    <script type="text/javascript">
+    function submitTodo() {
+        var inputField = document.getElementById("new-todo");
+        var newTodoTitle = inputField.value;
+        createTodo(newTodoTitle);
 
-      <h5>to do</h5>
+        function createTodo(title) {
+            // create a list item
+            var listItem = document.createElement("li");
+            listItem.className = "todo";
+
+            var label = document.createElement("label");
+            label.innerHTML = title;
+            listItem.appendChild(label);
+            var list = document.getElementById("todolist");
+
+            list.appendChild(listItem);
+        }
+
+        function nextTodoId() {
+            return document.getElementsByClassName("todo").length + 1;
+        }
+
+        function nextTodoInputField() {
+            return document.getElementsByClassName("new-todo").length + 1;
+        }
+
+      inputField.value = null;
+
+    }
+    </script>
 
 </body>
 </html>
