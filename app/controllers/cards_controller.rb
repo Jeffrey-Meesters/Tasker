@@ -17,9 +17,9 @@ before_action :set_board
   end
 
   def create
-    @card = board.cards.build(card_params)
+    card = @board.cards.build(card_params)
 
-    if @card.save
+    if card.save
       render status: 200, json: {
         message: "Card successfully created",
         card: card
