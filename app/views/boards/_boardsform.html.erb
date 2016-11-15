@@ -1,15 +1,9 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3 text-center">
 
-    <%= form_for @board, html: { method: :post } do |f| %>
-
-      <div class="form-group">
-        <label>Board</label>
-        <%= f.text_field :title, placeholder: "title", class: "form-control" %>
-      </div>
-
-      <%= f.submit ( "Create" ), class: "btn btn-success" %>
-
+    <%= form_for @board do |f| %>
+      <%= f.text_field :title, placeholder: "Board name", id: "board-name" %>
+      <ul id="errors"></ul>
     <% end %>
   </div>
 </div>

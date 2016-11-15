@@ -5,18 +5,14 @@
 </header>
 <body>
 
-  <div class="form-group">
-    <%= render 'boards/boardsform' %>
-  </div>
+  <h1>Your boards</h1>
 
-  <ul class="boards">
+  <%= render "boardsform"%>
+
+  <ul id="boards">
     <% @boards.each do |board| %>
-      <%  @board=board %>
-    <li class="board">
-      <%= link_to @board.title, board_path( @board[id=:id]) %>
-      <%= link_to "Delete", board_path( @board[id=:id] ), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-success" %>
-    </li>
-      <%end%>
+      <li><%=link_to board.title, board_path( board[id=:id]) %></li>
+    <%end %>
   </ul>
 
 </body>
