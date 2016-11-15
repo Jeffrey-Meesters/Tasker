@@ -1,6 +1,7 @@
 class CardsController < ApplicationController
   def index
-    @cards = current_user.boards.cards
+    @board = Boards.find(params[:boards_id])
+    @cards = @board.cards
   end
 
   def Show
@@ -8,11 +9,12 @@ class CardsController < ApplicationController
   end
 
   def new
-    @card = current_user.boards.cards.build
+    @board = @boards.find(params[:id])
+    @card = board.cards.new(cards_params)
   end
 
   def create
-    @card = current_user.boards.cards.build(card_params)
+    @card = current_user.boards.cards.new(card_params)
 
       if @card.save
         redirect_to board_cards_path, notice: "Card created"
@@ -32,7 +34,7 @@ class CardsController < ApplicationController
   private
 
   def card_params
-    params.require(:card).permit(:title)
+    params.require(:board).permit(:title, :board_id)
   end
 
 end

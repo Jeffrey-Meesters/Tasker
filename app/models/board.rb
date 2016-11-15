@@ -6,5 +6,4 @@ class Board < ApplicationRecord
    order(:title)
  end
 
-
 end
