@@ -5,5 +5,16 @@
 <body>
   <%= render 'cards/cardsform', card: @card, board: @board %>
 
+  <h1> <%= @board.title %> </h1>
+
+    <ul id="cards">
+    <% @board.cards.each do |card| %>
+      <li><%= card.title %></li>
+    <%end%>
+    </ul>
+
+
+      <h5>to do</h5>
+
 </body>
 </html>

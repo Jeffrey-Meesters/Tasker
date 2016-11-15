@@ -2,8 +2,8 @@ class CardsController < ApplicationController
 before_action :set_board
 
   def index
-    @card = Cards.new
-    @cards = @board.cards
+    @cards = @board.cards.all
+    #@card = Cards.new
     #@cards = @boards.cards.build
   end
 
