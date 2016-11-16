@@ -1,16 +1,16 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <header>
 
 </header>
 <body>
 
-<h1> <%# @board.title %> </h1>
+<h1> <% @board.title %> </h1>
 
   <ul id="cards">
-  <%# @cards.each do |card| %>
-    <li><%# card.title %></li>
-  <%#end%>
+  <% @cards.each do |card| %>
+    <li><%= card.title %></li>
+  <%end%>
   </ul>
 
 
@@ -20,4 +20,4 @@
 
 
 </body>
-</html> -->
+</html>

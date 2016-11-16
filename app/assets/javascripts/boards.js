@@ -11,7 +11,8 @@ function createBoard(title) {
     dataType: "json"})
 
     .success(function(data) {
-      var listItem = $('<li></li>').html(data.board.title);
+      linkTitle = $('<a></a>').attr('href', '/boards/' + data.board.id).html(data.board.title);
+      var listItem = $('<li></li>').append(linkTitle);
       $("#boards").append( listItem );
       $("#board-name").val(null);
       $("#notice").html(data.message);
@@ -38,8 +39,6 @@ function submitBoard(event) {
 $(document).ready(function() {
   $(".boardform").bind('submit', submitBoard);
 });
-
-
 
 // -------- javascript for creating tasks -------------------
 //Taking the value from the input field

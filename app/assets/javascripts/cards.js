@@ -10,8 +10,13 @@ function createCard(title, boardId) {
     dataType: "json"})
 
     .success(function(data) {
-      var listItem = $('<li></li>').html(data.card.title);
-      $("#cards").append( listItem );
+      buttonText = $("<button></button>").text("task")
+        buttonTextMouse = (buttonText).attr('onMouseDown', "submitTask()")
+      inputFieldType = $('<input >').attr('type',"text")
+        inputFieldId= (inputFieldType).attr('id', "new-task" )
+      itemTitle = $('<h3></h3>').html(data.card.title);
+      var listItemTitle = $('<li></li>').append(itemTitle).append(inputFieldType).append(buttonText);
+      $("#cards").append( listItemTitle );
       $("#card-name").val(null);
       $("#notice").html(data.message);
     })

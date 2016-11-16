@@ -1,17 +1,25 @@
 <!DOCTYPE html>
 <html>
 <header>
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
-  <style>
-  .draggable {
-    width: 100px;
-    height: 50px;
-    background: #ccc;
-  }
-  </style>
-  <script src="//code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script type='text/javascript'>
+
+  (function()
+  {
+    if( window.localStorage )
+    {
+      if( !localStorage.getItem('firstLoad') )
+      {
+        localStorage['firstLoad'] = true;
+        window.location.reload();
+      }
+      else
+        localStorage.removeItem('firstLoad');
+    }
+  })();
+
+  </script>
 </header>
+
 <body>
 
   <h1> Board: <%= @board.title %> </h1>
@@ -23,7 +31,7 @@
       <li>
         <h3> <%= card.title %> </h3>
 
-            <input type="text" onkeypress="if (event.keyCode==13){ func_name(this.value);return false;}" id="new-task"/>
+            <input type="text" id="new-task"/>
             <button onMouseDown="submitTask(); return false">task</button>
 
         <ul id="tasklist">
@@ -31,12 +39,5 @@
       </li>
     <%end%>
     </ul>
-
-<!-- MORE JAVASCRIPT ow, and JQUERY at the bottom -->
-    <script type="text/javascript">
-
-
-    </script>
-
 </body>
 </html>
