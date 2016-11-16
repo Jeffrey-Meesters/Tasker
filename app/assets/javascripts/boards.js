@@ -11,7 +11,6 @@ function createBoard(title) {
     dataType: "json"})
 
     .success(function(data) {
-      // link = $('<a></a>')
       linkTitle = $('<a></a>').attr('href', '/boards/' + data.board.id).html(data.board.title);
       var listItem = $('<li></li>').append(linkTitle);
       $("#boards").append( listItem );
