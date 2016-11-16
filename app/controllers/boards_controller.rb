@@ -28,7 +28,7 @@ before_action :set_board, only: [:show, :edit, :update]
 
   def update
   if @board.update(board_params)
-    redirect_to @board, notice: "cards successfully updated"
+    redirect_to @boards, notice: "board successfully updated"
   else
     render :edit
   end

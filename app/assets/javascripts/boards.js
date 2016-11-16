@@ -36,7 +36,7 @@ function submitBoard(event) {
 }
 
 $(document).ready(function() {
-  $("form").bind('submit', submitBoard);
+  $(".boardform").bind('submit', submitBoard);
 });
 
 // ######----- create and submit cards -------########
@@ -49,7 +49,8 @@ function createCard(title, boardId) {
     }),
 
     contentType: "application/json",
-    dataType: "json"})
+    dataType: "jsonp"
+  })
 
     .success(function(data) {
       var listItem = $('<li></li>').html(data.card.title);
@@ -64,6 +65,7 @@ function createCard(title, boardId) {
       $.each(errors, function(index, value) {
         var listItem = $('<li></li>').html(value);
         $("#errors").append(listItem);
+        console.log(error)
       });
     });
 }
@@ -78,5 +80,40 @@ function submitCard(event) {
 }
 
 $(document).ready(function() {
-  $("form").bind('submit', submitCard);
+  $(".cardform").bind('submit', submitCard);
 });
+
+// -------- javascript for creating tasks -------------------
+//Taking the value from the input field
+function submitTask() {
+    var inputField = document.getElementById("new-task");
+    var newTaskTitle = inputField.value;
+    createTask(newTaskTitle);
+
+    //building the task
+
+    function createTask(title) {
+        // create a list item
+        var listItem = document.createElement("li");
+        listItem.className = "draggable";
+
+        var label = document.createElement("div");
+        label.className = "draggable ui-draggable ui-draggable-handle"
+        label.style.position = "relative"
+        label.innerHTML = title;
+        listItem.appendChild(label);
+        var list = document.getElementById("tasklist");
+
+        list.appendChild(listItem);
+    }
+
+    function nextTaskId() {
+        return document.getElementsByClassName("task").length + 1;
+    }
+
+    function nexttaskInputField() {
+        return document.getElementsByClassName("new-task").length + 1;
+    }
+
+  inputField.value = null;
+}

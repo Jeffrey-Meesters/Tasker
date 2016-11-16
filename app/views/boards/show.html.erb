@@ -1,56 +1,41 @@
 <!DOCTYPE html>
 <html>
 <header>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+  <style>
+  .draggable {
+    width: 100px;
+    height: 50px;
+    background: #ccc;
+  }
+  </style>
+  <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </header>
 <body>
-  <%= render 'cards/cardsform', card: @card, board: @board %>
 
   <h1> Board: <%= @board.title %> </h1>
+
+    <%= render 'cards/cardsform', card: @card, board: @board %>
 
     <ul id="cards">
     <% @board.cards.each do |card| %>
       <li>
-        <h3> Card: <%= card.title %> </h3>
-        <form>
-            <input type="text" onkeypress="if (event.keyCode==13){ func_name(this.value);return false;}" id="new-todo"/>
-            <button onMouseDown="submitTodo(); return false">task</button>
-        </form>
-        <ul id="todolist">
+        <h3> <%= card.title %> </h3>
+
+            <input type="text" onkeypress="if (event.keyCode==13){ func_name(this.value);return false;}" id="new-task"/>
+            <button onMouseDown="submitTask(); return false">task</button>
+
+        <ul id="tasklist">
         </ul>
       </li>
     <%end%>
     </ul>
 
+<!-- MORE JAVASCRIPT ow, and JQUERY at the bottom -->
     <script type="text/javascript">
-    function submitTodo() {
-        var inputField = document.getElementById("new-todo");
-        var newTodoTitle = inputField.value;
-        createTodo(newTodoTitle);
 
-        function createTodo(title) {
-            // create a list item
-            var listItem = document.createElement("li");
-            listItem.className = "todo";
 
-            var label = document.createElement("label");
-            label.innerHTML = title;
-            listItem.appendChild(label);
-            var list = document.getElementById("todolist");
-
-            list.appendChild(listItem);
-        }
-
-        function nextTodoId() {
-            return document.getElementsByClassName("todo").length + 1;
-        }
-
-        function nextTodoInputField() {
-            return document.getElementsByClassName("new-todo").length + 1;
-        }
-
-      inputField.value = null;
-
-    }
     </script>
 
 </body>

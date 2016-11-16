@@ -1,9 +1,10 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3 text-center">
 
-    <%= form_for [board, card], html: { multipart: true, class="board-form" } do |f| %>
+    <%= form_for [board, card], :html => {:class => 'cardform' } do |f| %>
+    <div class="cardinput">
       <%= f.text_field :title, placeholder: "Card name", id: "card-name", data: { board_id: board.id } %>
-      <%# f.submit "Save", class: "btn btn-primary" %>
+    </div>
       <!-- <ul id="errors"></ul> -->
 
         <%# render 'cards/todos' %>
