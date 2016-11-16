@@ -39,49 +39,7 @@ $(document).ready(function() {
   $(".boardform").bind('submit', submitBoard);
 });
 
-// ######----- create and submit cards -------########
-function createCard(title, boardId) {
-  $.ajax({
-    type: "POST",
-    url: "/boards/" + boardId + "/cards.json",
-    data: JSON.stringify({
-      card: { title: title }
-    }),
 
-    contentType: "application/json",
-    dataType: "jsonp"
-  })
-
-    .success(function(data) {
-      var listItem = $('<li></li>').html(data.card.title);
-      $("#cards").append( listItem );
-      $("#card-name").val(null);
-      $("#notice").html(data.message);
-    })
-
-    .fail(function(error) {
-      errors = JSON.parse(error.responseText).error
-
-      $.each(errors, function(index, value) {
-        var listItem = $('<li></li>').html(value);
-        $("#errors").append(listItem);
-        console.log(error)
-      });
-    });
-}
-
-function submitCard(event) {
-  event.preventDefault();
-
-  var title = $("#card-name").val();
-  var boardId = $("#card-name").data("board-id");
-
-  createCard(title, boardId);
-}
-
-$(document).ready(function() {
-  $(".cardform").bind('submit', submitCard);
-});
 
 // -------- javascript for creating tasks -------------------
 //Taking the value from the input field

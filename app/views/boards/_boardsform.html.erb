@@ -2,9 +2,7 @@
   <div class="col-md-6 col-md-offset-3 text-center">
 
     <%= form_for @board, :html => {:class => 'boardform' } do |f| %>
-      <div class="textfield">
         <%= f.text_field :title, placeholder: "Project name", id: "board-name" %>
-      </div>
 
       <ul id="errors"></ul>
 
