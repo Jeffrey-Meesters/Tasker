@@ -1,0 +1,36 @@
+<!-- <form>
+    <input type="text" id="new-todo" placeholder="What needs to be done?">
+    <form onSubmit="submitTodo(); return false">
+</form>
+
+<ul id="todolist">
+    <li class="todo"></li>
+</ul>
+
+<script type="text/javascript">
+function submitTodo() {
+    var inputField = document.getElementById("new-todo");
+    var newTodoTitle = inputField.value;
+    createTodo(newTodoTitle);
+
+    inputField.value = null;
+
+    function createTodo(title) {
+        // create a list item
+        var listItem = document.createElement("li");
+        listItem.className = "todo";
+
+        var label = document.createElement("label");
+        label.innerHTML = title;
+        listItem.appendChild(label);
+        var list = document.getElementById("todolist");
+
+        list.appendChild(listItem);
+    }
+
+    function nextTodoId() {
+        return document.getElementsByClassName("todo").length + 1;
+    }
+
+}
+</script> -->
