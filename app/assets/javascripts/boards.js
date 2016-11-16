@@ -40,8 +40,6 @@ $(document).ready(function() {
   $(".boardform").bind('submit', submitBoard);
 });
 
-
-
 // -------- javascript for creating tasks -------------------
 //Taking the value from the input field
 function submitTask() {
