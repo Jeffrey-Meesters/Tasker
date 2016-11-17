@@ -5,6 +5,9 @@ before_action :set_board
     @cards = @board.cards.all
     #@card = Cards.new
     #@cards = @boards.cards.build
+
+    @tasks = @cards.tasks.all
+    @task = @bcard.tasks.new
   end
 
   def show

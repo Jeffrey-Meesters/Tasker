@@ -40,30 +40,16 @@ $(document).ready(function() {
   $(".boardform").bind('submit', submitBoard);
 });
 
-// -------- creating tasks -------------------
-
+/// -------- javascript for creating tasks -------------------
 //Taking the value from the input field
-function submitTask(event) {
-  even.preventDefault();
+function submitTask() {
+    var inputField = document.getElementById("new-task");
+    var newTaskTitle = inputField.value;
+    createTask(newTaskTitle);
 
-  var inputField = document.getElementById("new-task");
-  var newTaskTitle = inputField.value;
+    //building the task
 
-  createTask(newTaskTitle);
-}
-
-  function createTask(title) {
-    $.ajax({
-      type: "POST"
-      url: "/boards" + boardId + "/cards/" + cardId.json
-      data: JSON.stringify({
-        task: {title: title}
-      })
-
-      contentType: "application/json",
-      dataType: "json"
-
-      .succes(function(data){
+    function createTask(title) {
         // create a list item
         var listItem = document.createElement("li");
         listItem.className = "draggable";
@@ -76,17 +62,15 @@ function submitTask(event) {
         var list = document.getElementById("tasklist");
 
         list.appendChild(listItem);
-      })
+    }
 
-      .fail(function(error) {
-        errors = JSON.parse(error.responseText).error
+    function nextTaskId() {
+        return document.getElementsByClassName("task").length + 1;
+    }
 
-        $.each(errors, function(index, value) {
-          var listItem = $('<li></li>').html(value);
-          $("#errors").append(listItem);
-      });
-    });
-  });
-  }
+    function nexttaskInputField() {
+        return document.getElementsByClassName("new-task").length + 1;
+    }
 
+  inputField.value = null;
 }

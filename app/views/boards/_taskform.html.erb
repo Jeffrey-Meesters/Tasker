@@ -1,0 +1,10 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3 text-center">
+
+    <%= form_for [board, card, task], :html => {:class => 'taskform'} do |f| %>
+      <%= f.text_field :title, placeholder: "task name", id: "card-name", data: { card_id: card.id } %>
+      <!-- <ul id="errors"></ul> -->
+
+      <% end %>
+  </div>
+</div>

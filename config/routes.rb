@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :boards do
-    resources :cards
+    resources :cards do
+      resources :tasks
+    end
   end
 
 end
