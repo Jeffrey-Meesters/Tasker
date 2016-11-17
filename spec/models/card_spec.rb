@@ -1,5 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Card, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "validations" do
+    it "is invalid without a title" do
+      card = Card.new(title: "")
+      card.valid?
+      expect(card.errors).to have_key(:title)
+    end
+  end
 end
