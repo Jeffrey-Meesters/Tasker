@@ -40,16 +40,30 @@ $(document).ready(function() {
   $(".boardform").bind('submit', submitBoard);
 });
 
-// -------- javascript for creating tasks -------------------
+// -------- creating tasks -------------------
+
 //Taking the value from the input field
-function submitTask() {
-    var inputField = document.getElementById("new-task");
-    var newTaskTitle = inputField.value;
-    createTask(newTaskTitle);
+function submitTask(event) {
+  even.preventDefault();
 
-    //building the task
+  var inputField = document.getElementById("new-task");
+  var newTaskTitle = inputField.value;
 
-    function createTask(title) {
+  createTask(newTaskTitle);
+}
+
+  function createTask(title) {
+    $.ajax({
+      type: "POST"
+      url: "/boards" + boardId + "/cards/" + cardId.json
+      data: JSON.stringify({
+        task: {title: title}
+      })
+
+      contentType: "application/json",
+      dataType: "json"
+
+      .succes(function(data){
         // create a list item
         var listItem = document.createElement("li");
         listItem.className = "draggable";
@@ -62,15 +76,17 @@ function submitTask() {
         var list = document.getElementById("tasklist");
 
         list.appendChild(listItem);
-    }
+      })
 
-    function nextTaskId() {
-        return document.getElementsByClassName("task").length + 1;
-    }
+      .fail(function(error) {
+        errors = JSON.parse(error.responseText).error
 
-    function nexttaskInputField() {
-        return document.getElementsByClassName("new-task").length + 1;
-    }
+        $.each(errors, function(index, value) {
+          var listItem = $('<li></li>').html(value);
+          $("#errors").append(listItem);
+      });
+    });
+  });
+  }
 
-  inputField.value = null;
 }
