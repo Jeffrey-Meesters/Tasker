@@ -30,10 +30,11 @@
     <% @board.cards.each do |card| %>
       <li>
         <h3> <%= card.title %> </h3>
-          <form >
-            <input type="text" id="new-task"> <% boardId= @board.id %></input>
-            <button id="submition" onclick="submitTask()">task</button>
-          </form>
+          <div id="boardId" data-boardId="<%=@board.id%>">
+          <div id="carddId" data-carddId="<%=card.id%>">
+            <input type="text" id="new-task"/>
+            <button onClick="submit" id="submit">task</button></input>
+
         <ul id="tasklist">
         </ul>
       </li>

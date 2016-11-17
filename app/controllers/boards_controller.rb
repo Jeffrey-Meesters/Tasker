@@ -13,6 +13,7 @@ before_action :set_card, only: [:show, :edit, :update]
 
     @cards = @board.cards.all
     @card = @board.cards.new
+
   end
 
   def create
@@ -46,8 +47,7 @@ end
   end
 
   def set_card
-    @board = Board.find(params[:id])
-    @card = @board.cards(:card_id)
+    @cards = @board.cards.all
   end
 
   def card_params

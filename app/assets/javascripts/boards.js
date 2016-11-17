@@ -42,14 +42,35 @@ $(document).ready(function() {
 
 /// -------- javascript for creating tasks -------------------
 //Taking the value from the input field
-function submitTask() {
-    var inputField = document.getElementById("new-task");
-    var newTaskTitle = inputField.value;
-    createTask(newTaskTitle);
+$(document).ready(function() {
+  $("#submit").bind('click', submitTask);
+});
 
-    //building the task
+//Taking the value from the input field
+function submitTask(event) {
+console.log(boardId)
+console.log(cardId)
 
-    function createTask(title) {
+  var title = $("#new-task").val();
+  var boardId = $("#boardId").data("boardid")
+  var cardId = $("cardId").data("cardid")
+
+  createTask(title, boardId, cardId);
+}
+
+  function createTask(title, boardId, cardId) {
+    $.ajax({
+      type: "POST",
+      url:  boardId + "/cards/" + cardId + "/task",
+      data: JSON.stringify({
+        task: { title: title }
+      }),
+
+      contentType: "application/json",
+      dataType: "json"})
+
+      .success(function(data) {
+        console.log(data)
         // create a list item
         var listItem = document.createElement("li");
         listItem.className = "draggable";
@@ -62,15 +83,14 @@ function submitTask() {
         var list = document.getElementById("tasklist");
 
         list.appendChild(listItem);
-    }
+      })
 
-    function nextTaskId() {
-        return document.getElementsByClassName("task").length + 1;
-    }
+      .fail(function(error) {
+        errors = JSON.parse(error.responseText).error
 
-    function nexttaskInputField() {
-        return document.getElementsByClassName("new-task").length + 1;
-    }
-
-  inputField.value = null;
-}
+        $.each(errors, function(index, value) {
+          var listItem = $('<li></li>').html(value);
+          $("#errors").append(listItem);
+      });
+    });
+  }

@@ -1,32 +1,38 @@
 class TasksController < ApplicationController
 
-def index
-
-end
-
-def show
-@tasks = @cards.tasks.all
-  @taks = task.find(params[:id])
-end
-
-def new
-  @task = @boards.cards.build
-end
-
-
-def create
-  task = @boards.cards.build(task_params)
-
-  if task.save
-    render status: 200, json: {
-      message: "task successfully created",
-      task: task
-    }.to_json
-  else
-    render status: 422, json: {
-      error: task.errors.full_messages
-    }.to_json
+  def index
+    @tasks = Task.all
   end
-end
+
+  def show
+  @task = task.find(params[:id])
+
+  end
+
+  def new
+    @boards = current_user.boards.all
+    @board = Board.find(params[:id])
+
+    @cards = @board.cards.all
+    @card = Card.find(params[:id])
+
+    @task = Task.new
+  end
+
+
+  def create
+    task = @boards.cards.build(task_params)
+
+    if task.save
+      return saved!
+    else
+      return error!
+    end
+  end
+
+  private
+
+  def task_params
+  end
 
 end

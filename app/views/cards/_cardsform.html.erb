@@ -3,7 +3,7 @@
 
     <%= form_for [board, card], :html => {:class => 'cardform' } do |f| %>
       <%= f.text_field :title, placeholder: "Card name", id: "card-name", data: { board_id: board.id } %>
-      <!-- <ul id="errors"></ul> -->
+      <ul id="errors"></ul>
 
       <% end %>
   </div>
