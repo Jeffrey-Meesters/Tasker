@@ -1,0 +1,41 @@
+class TasksController < ApplicationController
+<<<<<<< HEAD
+
+  def index
+    @tasks = Task.all
+  end
+
+  def show
+  @task = task.find(params[:id])
+
+  end
+
+  def new
+    @boards = current_user.boards.all
+    @board = Board.find(params[:id])
+
+    @cards = @board.cards.all
+    @card = Card.find(params[:id])
+
+    @task = Task.new
+  end
+
+
+  def create
+    task = @boards.cards.build(task_params)
+
+    if task.save
+      return saved!
+    else
+      return error!
+    end
+  end
+
+  private
+
+  def task_params
+  end
+
+=======
+>>>>>>> master
+end
