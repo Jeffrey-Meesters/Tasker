@@ -30,4 +30,18 @@ sleep(2)
     #Expect to be redirected to the root_path
     expect(current_path).to eq root_path
   end
+
+
+    scenario 'redirect to boards page' do
+      #point to the right path
+      visit boards_path
+      # fill in the board input field
+      fill_in "Project name", with: 'test this'
+
+      # Press enter (to submit the form)
+      page.execute_script("$('boardform').submit()")
+
+      #Expect the page to have content
+      expect(page).to have_content('test this')
+    end
 end
