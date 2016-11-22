@@ -1,14 +1,19 @@
 class BoardsController < ApplicationController
 before_action :set_board, only: [:show, :edit, :update]
+before_action :set_card, only: [:show, :edit, :update]
 
   def index
-    @boards = current_user.boards
+    @boards = current_user.boards.all
     @board = Board.new
   end
 
   def show
+    @boards = current_user.boards.all
     @board = Board.find(params[:id])
+
+    @cards = @board.cards.all
     @card = @board.cards.new
+
   end
 
   def create
@@ -39,6 +44,10 @@ end
 
   def set_board
     @board = Board.find(params[:id])
+  end
+
+  def set_card
+    @cards = @board.cards.all
   end
 
   def card_params

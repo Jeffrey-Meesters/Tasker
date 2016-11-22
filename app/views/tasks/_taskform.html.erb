@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3 text-center">
+
+    <%= form_for @task, :url => board_card_task_path(board), method: :post, :html => {:class => 'taskform'} do |f| %>
+      <%= f.text_field :title, placeholder: "task name", id: "task-name", data: { card_id: card.id } %>
+      <%= f.hidden_field :card_id, :value => @card.id %>
+      <ul id="errors"></ul>
+
+      <% end %>
+  </div>
+</div>

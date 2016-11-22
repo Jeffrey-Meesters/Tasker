@@ -5,11 +5,17 @@ before_action :set_board
     @cards = @board.cards.all
     #@card = Cards.new
     #@cards = @boards.cards.build
+
+    @tasks = @cards.tasks.all
+    @task = @bcard.tasks.new
   end
 
   def show
-    @card = current_user.boards.cards.find(cards_params)
-    @card = Cards.find(cards_params)
+    @boards = current_user.boards.all
+    @board = Board.find(params[:id])
+
+    @cards = @board.cards.all
+    @card = @board.cards.new
   end
 
   def new

@@ -26,18 +26,17 @@
 
     <%= render 'cards/cardsform', card: @card, board: @board %>
 
-    <ul id="cards">
+    <div id="cards">
     <% @board.cards.each do |card| %>
-      <li>
         <h3> <%= card.title %> </h3>
-
-            <input type="text" id="new-task"/>
-            <button onMouseDown="submitTask(); return false">task</button>
+          <div id="boardId" data-boardId="<%=@board.id%>">
+          <div id="carddId" data-carddId="<%=card.id%>">
+            <div id="new-task">
+            </div>
 
         <ul id="tasklist">
         </ul>
-      </li>
     <%end%>
-    </ul>
+  </div>
 </body>
 </html>
