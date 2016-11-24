@@ -1,5 +1,6 @@
-<!-- $(document).ready(function() {
-  $("#submition").bind('click', submitTask);
+/// -------- javascript for creating tasks -------------------
+$(document).on('turbolinks:load', function() {
+  $("#submit").bind('click', submitTask);
 });
 
 //Taking the value from the input field
