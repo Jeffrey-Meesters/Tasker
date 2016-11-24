@@ -43,6 +43,6 @@ function submitCard(event) {
   createCard(title, boardId);
 }
 
-$(document).ready(function() {
+$(document).on('turbolinks:load', function() {
   $(".cardform").bind('submit', submitCard);
 });

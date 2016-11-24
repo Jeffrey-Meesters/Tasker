@@ -1,18 +1,7 @@
 <!DOCTYPE html>
 <html>
 <header>
-    <script type='text/javascript'>
 
-        (function () {
-            if (window.localStorage) {
-                if (!localStorage.getItem('firstLoad')) {
-                    localStorage['firstLoad'] = true;
-                    window.location.reload();
-                } else
-                    localStorage.removeItem('firstLoad');
-                }
-            })();
-    </script>
 </header>
 
 <body>
@@ -25,7 +14,7 @@
   <%= render 'cards/cardsform', card: @card, board: @board %>
 
   <div id="cards">
-    <% @board.cards.each do |card| %>
+  <% @board.cards.each do |card| %>
     <h3>
         <%= card.title %>
     </h3>
@@ -34,7 +23,7 @@
     <div id="boardId" data-boardId="<%=@board.id%>"></div>
     <div id="carddId" data-carddId="<%=card.id%>"></div>
     <div id="new-task"></div>
-            <ul id="tasklist"></ul>
-            <%end%>
+      <ul id="tasklist"></ul>
+  <%end%>
 </body>
 </html>
