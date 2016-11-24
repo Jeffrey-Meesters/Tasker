@@ -1,24 +1,30 @@
-# README
+# Tasker
+You need to have Rails 5.0 installed if so then:
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- download the repository
+- go in your terminal to the file
+- in terminal type: rm -rf .git
+- run bundle install
+- run rails server
+- go to localhost3000 in you browser
+- sign up
 
-Things you may want to cover:
+##Work in progress
+This app should be a look a like of Trello.
+After you log in you can acces and create your projects.
+When you click on your created project you can make cards.
+The cards should contain your tasks which will be dragable to other cards within the project.
 
-* Ruby version
+###so far
 
-* System dependencies
+- devise works
+- Boards can  be created
+- Cards can be created
+- A created card gets an input field for tasks appended with Jquery
 
-* Configuration
+###To be done
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- biggest issue: tasks cant't be send with AJAX because the card-id is not defined
+- input field in the cards for tasks is not persistent
+- Make tasks and maybe even cards draggable to other positions
+- some lay-out
